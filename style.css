@@ -1,0 +1,105 @@
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #14201a;
+  color: #f2f5ee;
+  font-family: "Segoe UI", "Yu Gothic UI", "Meiryo", sans-serif;
+  overflow: hidden;
+}
+
+/* 1060x720 の固定サイズ。画面が小さいときは game.js が縮小して中央に置く */
+#wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1060px;
+  height: 720px;
+  display: flex;
+  gap: 20px;
+  transform-origin: top left;
+}
+
+#field {
+  width: 720px;
+  height: 720px;
+  border-radius: 8px;
+  background: #68a648;
+  cursor: none;
+}
+
+#panel {
+  width: 320px;
+  height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#radar {
+  width: 260px;
+  height: 260px;
+}
+
+.info {
+  width: 100%;
+  padding: 18px 20px;
+  background: #1f3027;
+  border: 2px solid #3d5a49;
+  border-radius: 10px;
+}
+.info .lbl { font-size: 13px; color: #9fb8a7; margin-top: 8px; }
+.info .lbl:first-child { margin-top: 0; }
+.info .name { font-size: 24px; font-weight: bold; word-break: break-all; }
+.info .score { font-size: 56px; font-weight: bold; color: #ffd84a; line-height: 1.1; }
+.info .kills { font-size: 14px; color: #c9d8cd; }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 32, 22, 0.94);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+.overlay[hidden] { display: none; }
+.overlay h1 { font-size: 64px; margin: 0 0 6px; color: #fff; letter-spacing: 4px; text-shadow: 0 4px 0 #3b7a3a; }
+.overlay .tagline { margin: 0 0 14px; font-size: 24px; font-weight: bold; color: #ffd84a; }
+.overlay .sub { color: #b6cbbc; margin: 0 0 18px; }
+
+/* プレイ中は画面上のどこでもシステムのカーソルを隠す(照準は自前描画) */
+body.playing, body.playing * { cursor: none !important; }
+
+.namebox { display: flex; align-items: center; gap: 10px; font-size: 18px; }
+.namebox input {
+  width: 240px;
+  padding: 8px 10px;
+  font-size: 20px;
+  border-radius: 6px;
+  border: 2px solid #5b7d68;
+  background: #f4f8f1;
+  color: #1a2a20;
+}
+.best { margin: 14px 0 18px; font-size: 20px; color: #ffd84a; }
+
+#startBtn {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 12px 36px;
+  border: none;
+  border-radius: 10px;
+  background: #f08a1c;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #a85d0a;
+}
+#startBtn:hover { background: #ff9a2e; }
+#startBtn:active { transform: translateY(2px); box-shadow: 0 2px 0 #a85d0a; }
+
+.help { list-style: none; padding: 0; margin: 26px 0 0; color: #b6cbbc; line-height: 1.9; font-size: 15px; }
+.help b { color: #fff; }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガチョウの逆襲</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="wrap">
+  <canvas id="field" width="720" height="720"></canvas>
+
+  <aside id="panel">
+    <canvas id="radar" width="260" height="260"></canvas>
+    <div class="info">
+      <div class="lbl">ガチョウ</div>
+      <div id="pName" class="name">-</div>
+      <div class="lbl">ポイント(駆逐アヒル数)</div>
+      <div id="pScore" class="score">0</div>
+      <div id="pKills" class="kills"></div>
+    </div>
+  </aside>
+
+  <div id="start" class="overlay">
+    <h1>ガチョウの逆襲</h1>
+    <p class="tagline">だってアヒルばっかりずるいじゃん!</p>
+    <p class="sub">世界中で愛されるアヒルたちを、1羽のガチョウが駆逐する。制限時間は1分。</p>
+
+    <label class="namebox">プレイヤー名
+      <input id="nameInput" type="text" maxlength="12" placeholder="名前を入力" autocomplete="off">
+    </label>
+    <div class="best">最高得点: <span id="bestText">まだ記録なし</span></div>
+    <button id="startBtn" type="button">スタート(スペースキー)</button>
+
+    <ul class="help">
+      <li><b>W / S</b> 前進 / 後退　<b>A / D</b> 左 / 右にスライド</li>
+      <li><b>マウス</b> ガチョウの向き　<b>左クリック</b> 首を伸ばしてつつく</li>
+      <li><b>ESC</b> 途中終了(スタート画面へ)　<b>M</b> 効果音 <span id="muteText">ON</span> / OFF 切り替え</li>
+      <li>大きな白いアヒルは5回つつくと倒せて、5アヒル分!</li>
+    </ul>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
