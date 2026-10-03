@@ -1,4 +1,5 @@
 'use strict';
+// Made with Claude Code (Sonnet 5.5)
 // ガチョウの逆襲 — Canvas 2D による疑似3D(斜め見下ろし)ゲーム。
 // ワールドの計算(移動・当たり判定・AI)はすべて2D。描画のときだけ y方向を圧縮して奥行きを出す。
 
@@ -29,6 +30,9 @@ const STORE_BEST = 'gooseGame.best';   // {name, score}
 const STORE_NAME = 'gooseGame.name';
 const STORE_MUTE = 'gooseGame.muted';
 const DEFAULT_NAME = '名もないガチョウ';
+const GAME_TITLE = 'ガチョウの逆襲';
+const GAME_URL = 'https://kentagogojp.github.io/goose-revenge/';   // 公開ページ(ローカルで遊んでもこのURLを共有する)
+const HASHTAG = '#GooseRevenge';
 
 // ---------- 要素 ----------
 const wrap = document.getElementById('wrap');
@@ -41,6 +45,7 @@ const nameInput = document.getElementById('nameInput');
 const bestText = document.getElementById('bestText');
 const startBtn = document.getElementById('startBtn');
 const muteText = document.getElementById('muteText');
+const shareBtn = document.getElementById('shareBtn');
 const pName = document.getElementById('pName');
 const pScore = document.getElementById('pScore');
 const pKills = document.getElementById('pKills');
@@ -855,12 +860,31 @@ function finishGame() {
   resultT = 0;
   sfx.timeUp();
   if (isRecord) sfx.record();
+  shareBtn.hidden = false;
   showBest();
+}
+
+// X(旧Twitter)の投稿画面を新しいタブで開く。自動投稿はしない(最終的に投稿するかは本人が決める)
+function shareText() {
+  const lines = [
+    `『${GAME_TITLE}』で ${result.name} が ${result.score} アヒルを駆逐!` + (result.isRecord ? ' 最高得点更新!!' : ''),
+    GAME_URL,
+    HASHTAG,
+  ];
+  return lines.join('\n');
+}
+
+function shareResult() {
+  if (state !== 'RESULT' || !result) return;
+  const url = 'https://x.com/intent/post?text=' + encodeURIComponent(shareText());
+  window.open(url, '_blank', 'noopener');
+  shareBtn.blur();
 }
 
 function backToStart() {
   if (state !== 'RESULT') return;
   state = 'START';
+  shareBtn.hidden = true;
   startEl.hidden = false;
 }
 
@@ -874,6 +898,7 @@ window.addEventListener('keydown', e => {
     return;
   }
   if (state === 'RESULT') {
+    if (e.code === 'KeyX' && !e.repeat) { shareResult(); return; }
     if (e.code === 'Space') { e.preventDefault(); if (resultT > 0.6 && !e.repeat) backToStart(); }
     return;                                           // 終了中はWASDなどを受け付けない
   }
@@ -923,6 +948,7 @@ document.addEventListener('pointerlockchange', () => {
 });
 
 startBtn.addEventListener('click', startGame);
+shareBtn.addEventListener('click', shareResult);
 nameInput.addEventListener('input', () => saveJSON(STORE_NAME, nameInput.value));
 
 // ---------- 画面フィット(小さい画面では縮小して中央配置) ----------

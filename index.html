@@ -3,6 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Claude Code (Sonnet 5.5)">
+<meta name="author" content="Claude Code (Sonnet 5.5)">
+<meta name="description" content="だってアヒルばっかりずるいじゃん! 1羽のガチョウが、1分間でアヒルを何羽駆逐できるか。ブラウザで遊べる簡易3Dアクション。">
+
+<!-- Xなどに投稿されたときに表示されるカード(画像は絶対URLで指定する必要がある) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ガチョウの逆襲">
+<meta property="og:title" content="ガチョウの逆襲">
+<meta property="og:description" content="だってアヒルばっかりずるいじゃん! 1分間でアヒルを何羽駆逐できる?">
+<meta property="og:url" content="https://kentagogojp.github.io/goose-revenge/">
+<meta property="og:image" content="https://kentagogojp.github.io/goose-revenge/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ガチョウの逆襲">
+<meta name="twitter:description" content="だってアヒルばっかりずるいじゃん! 1分間でアヒルを何羽駆逐できる?">
+<meta name="twitter:image" content="https://kentagogojp.github.io/goose-revenge/ogp.jpg">
 <title>ガチョウの逆襲</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -21,6 +38,8 @@
     </div>
   </aside>
 
+  <button id="shareBtn" type="button" hidden>𝕏 で結果をシェア(Xキー)</button>
+
   <div id="start" class="overlay">
     <h1>ガチョウの逆襲</h1>
     <p class="tagline">だってアヒルばっかりずるいじゃん!</p>
@@ -38,6 +57,8 @@
       <li><b>ESC</b> 途中終了(スタート画面へ)　<b>M</b> 効果音 <span id="muteText">ON</span> / OFF 切り替え</li>
       <li>大きな白いアヒルは5回つつくと倒せて、5アヒル分!</li>
     </ul>
+
+    <p class="credit">Made with Claude Code (Sonnet 5.5)</p>
   </div>
 </div>
 <script src="game.js"></script>
