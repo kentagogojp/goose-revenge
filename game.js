@@ -32,6 +32,7 @@ const STORE_MUTE = 'gooseGame.muted';
 const DEFAULT_NAME = '名もないガチョウ';
 const GAME_TITLE = 'ガチョウの逆襲';
 const GAME_URL = 'https://kentagogojp.github.io/goose-revenge/';   // 公開ページ(ローカルで遊んでもこのURLを共有する)
+const SHARE_URL = GAME_URL + '?v=3';   // 投稿に入れるURL。Xは一度読んだURLの結果(カードなし)を覚えるため、読み直されるよう末尾を付けている
 const HASHTAG = '#GooseRevenge';
 
 // ---------- 要素 ----------
@@ -868,7 +869,7 @@ function finishGame() {
 function shareText() {
   const lines = [
     `『${GAME_TITLE}』で ${result.name} が ${result.score} アヒルを駆逐!` + (result.isRecord ? ' 最高得点更新!!' : ''),
-    GAME_URL,
+    SHARE_URL,
     HASHTAG,
   ];
   return lines.join('\n');
